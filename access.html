@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>診療内容｜佐藤医院</title>
+
+    <!-- Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        /* ===== 診療時間（表） ===== */
+        .hours-table-wrap {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #b9b9b9;
+            margin-top: 18px;
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        .hours-table th,
+        .hours-table td {
+            border: 0;
+            padding: 10px 8px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .hours-table tr>* {
+            border-top: 1px solid #b9b9b9;
+            border-left: 1px solid #b9b9b9;
+        }
+
+        .hours-table thead th {
+            background: #E7F0FF;
+            font-weight: 500;
+        }
+
+        .hours-table tbody tr:nth-child(even) td {
+            background: #E7F0FF;
+        }
+
+        .hours-table tbody td:first-child {
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .hours-table thead tr>* {
+            border-top: 0;
+        }
+
+        .hours-table tr>*:first-child {
+            border-left: 0;
+        }
+
+        /* ===== アクセス ===== */
+        .access {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 28px;
+            align-items: start;
+            margin-top: 18px;
+        }
+
+        .access-map {
+            width: 412px;
+            height: 412px;
+            background: var(--ph);
+            overflow: hidden;
+        }
+
+        .access-map iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .meta {
+            margin-top: 10px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .label {
+            display: inline-block;
+            width: 90px;
+        }
+
+        /* ===== Button ===== */
+        .btn-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 36px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 32px;
+            width: 230px;
+            height: 56px;
+            background: var(--btn);
+            color: #fff;
+            font-weight: 500;
+            border-radius: 5px;
+            box-shadow: none;
+            letter-spacing: .08em;
+            font-size: 16px;
+        }
+
+        .btn:hover,
+        .btn:active {
+            filter: brightness(0.70);
+        }
+
+        /* ===== Responsive（トップと共通の方針） ===== */
+        @media (max-width: 890px) {
+
+            /* SP Header：追従 */
+            .access {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .access-map {
+                width: 100%;
+                max-width: 412px;
+                height: auto;
+                aspect-ratio: 1 / 1;
+                margin: 0 auto;
+            }
+
+            /* SP Footer：メニュー非表示・中央寄せ */
+        }
+
+        @media (max-width: 600px) {
+            .btn {
+                width: min(230px, 100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <!-- ===== Header（共通） ===== -->
+        <header>
+            <div class="container-wide">
+                <div class="header-inner">
+                    <a href="index.html" class="logo">
+                        <img src="./image/cliniclogo_1208.png" alt="佐藤医院">
+                    </a>
+
+                    <nav class="global" aria-label="グローバルナビゲーション">
+                        <!-- PC -->
+                        <div class="global-links">
+                            <a href="index.html">トップページ</a>
+                            <a href="info.html">お知らせ</a>
+                            <a href="details.html">診療内容</a>
+                            <a href="about.html">当院について</a>
+                            <a href="access.html">診療時間・所在地</a>
+                            <a href="faq.html">よくある質問</a>
+                            <a class="reserve" href="#">Web予約</a>
+                        </div>
+
+                        <!-- SP -->
+                        <div class="global-actions">
+                            <a class="reserve reserve--sp" href="#">Web予約</a>
+                            <button class="hamburger" type="button" aria-label="メニューを開閉" aria-controls="globalMenu"
+                                aria-expanded="false">
+                                <span class="hamburger_bar" aria-hidden="true"></span>
+                                <span class="hamburger_bar" aria-hidden="true"></span>
+                                <span class="hamburger_bar" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- SP drawer -->
+                <div id="globalMenu" class="global-drawer" hidden>
+                    <a href="index.html">トップページ</a>
+                    <a href="info.html">お知らせ</a>
+                    <a href="details.html">診療内容</a>
+                    <a href="about.html">当院について</a>
+                    <a href="access.html">診療時間・所在地</a>
+                    <a href="faq.html">よくある質問</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== Main（details） ===== -->
+        <main>
+            <section class="section" aria-label="診療時間・所在地">
+                <div class="container">
+                    <h1 class="title">診療時間・所在地</h1>
+                    <p class="lead">
+                        佐藤医院では、患者様のご都合に合わせた診療を提供できるよう、柔軟な診察時間を設けております。<br>
+                        以下の診察時間をご確認いただき、ご来院の際にご利用ください。
+                    </p>
+                </div>
+                <div class="container">
+                    <h2>診療時間</h2>
+                    <div class="hours-table-wrap">
+                        <table class="hours-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>月</th>
+                                    <th>火</th>
+                                    <th>水</th>
+                                    <th>木</th>
+                                    <th>金</th>
+                                    <th>土</th>
+                                    <th>日</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>9:00～12:00</td>
+                                <td>●</td>
+                                <td>●</td>
+                                <td>●</td>
+                                <td>－</td>
+                                <td>●</td>
+                                <td>●</td>
+                                <td>－</td>
+                            </tr>
+                            <tr>
+                                <td>14:00～19:00</td>
+                                <td>●</td>
+                                <td>●</td>
+                                <td>●</td>
+                                <td>－</td>
+                                <td>●</td>
+                                <td>－</td>
+                                <td>－</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="u-spacer-20" aria-hidden="true"></div>
+                    <p>受付時間：8時〜11時 / 13〜18時</p>
+                    <p>休診日：木曜・土曜午後・日曜</p>
+                    <p class="note u-mt-10">※祝祭日も診察を行っておりますが、休診日もございますので、事前にご確認ください。</p>
+                    <div class="u-spacer-40" aria-hidden="true"></div>
+                </div>
+                <div class="container">
+                    <h2>診療科目</h2>
+                    <div class="u-spacer-20" aria-hidden="true"></div>
+                    <p>
+                    <ul>
+                        <li>内科</li>
+                        <li>循環器科</li>
+                        <li>呼吸器科</li>
+                        <li>予防医療・健康診断</li>
+                        <li>生活習慣病（高血圧、糖尿病等）治療・管理</li>
+                    </ul>
+                    その他、ご不明点があればお電話またはメールでお問い合わせください。</p>
+                    <div class="u-spacer-40" aria-hidden="true"></div>
+                </div>
+                <div class="container">
+                    <h2>所在地</h2>
+                    <div class="access">
+                        <div class="access-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d572.6910566759595!2d139.77855302044742!3d35.71072565786052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e98cbf99ad1%3A0x4d191fa2b224e817!2z5pu95oiR44OT44Or!5e0!3m2!1sja!2sjp!4v1765161860705!5m2!1sja!2sjp"
+                                width="412" height="412" class="u-frame-border-0" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div>
+                            <div class="meta">
+                                <p>住所<br>
+                                    〒123-4567 東京都台東区上野0丁目0-0</p>
+                                <p>アクセス<br>
+                                    最寄駅：JR上野より徒歩5分<br>
+                                    当院専用の無料駐車場10台分あり</p>
+                                <p>ご来院の際は、交通状況にご注意ください。<br>最寄駅から徒歩5分の距離にあり、便利な立地です。</p>
+                                <p>お問い合わせ<br>
+                                    電話番号：00-0000-0000<br>
+                                    ファックス：00-0000-0000<br>
+                                    Eメール：info@sato-clinic-test.jp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Footer（共通） ===== -->
+            <footer aria-label="フッター">
+                <div class="container footer-inner">
+                    <nav class="footer-nav" aria-label="フッターナビゲーション">
+                        <a href="index.html">トップページ</a>
+                        <a href="info.html">お知らせ</a>
+                        <a href="details.html">診療内容</a>
+                        <a href="about.html">当院について</a>
+                        <a href="access.html">診療時間・所在地</a>
+                        <a href="faq.html">よくある質問</a>
+                    </nav>
+
+                    <div class="footer-brand">
+                        <a href="#" class="logo">
+                            <img src="./image/cliniclogo_1208.png" alt="佐藤医院">
+                        </a>
+                        <div class="footer-copy">
+                            <strong>地域に根ざした医療を、あなたに。</strong>
+                            <p>安心して任せられる“かかりつけ医”を目指して。</p>
+                        </div>
+                    </div>
+
+                    <div class="copyright">©2025 佐藤医院 All rights reserved.</div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            // Hamburger（トップと同等）
+            const btn = document.querySelector('.hamburger');
+            const menu = document.getElementById('globalMenu');
+
+            const closeMenu = () => {
+                if (!btn || !menu) return;
+                menu.hidden = true;
+                btn.setAttribute('aria-expanded', 'false');
+            };
+            const openMenu = () => {
+                if (!btn || !menu) return;
+                menu.hidden = false;
+                btn.setAttribute('aria-expanded', 'true');
+            };
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    expanded ? closeMenu() : openMenu();
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (menu.hidden) return;
+                    if (btn.contains(e.target) || menu.contains(e.target)) return;
+                    closeMenu();
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') closeMenu();
+                });
+
+                // トップに合わせる（必要なら 890 に統一してOK）
+                const mq = window.matchMedia('(max-width: 980px)');
+                mq.addEventListener?.('change', (ev) => { if (!ev.matches) closeMenu(); });
+            }
+        })();
+    </script>
+</body>
+
+</html>

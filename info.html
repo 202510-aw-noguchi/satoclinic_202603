@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>お知らせ｜佐藤医院</title>
+
+  <!-- Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 32px;
+      width: 230px;
+      height: 56px;
+      background: var(--btn);
+      color: #fff;
+      font-weight: 500;
+      border-radius: 5px;
+      box-shadow: none;
+      letter-spacing: .08em;
+      font-size: 16px;
+    }
+
+    .btn:hover,
+    .btn:active {
+      filter: brightness(0.70);
+    }
+
+    /* ===== お知らせ ===== */
+    .news-page-title {
+      margin-top: 4px;
+      margin-bottom: 28px;
+    }
+
+    .news-articles {
+      display: grid;
+      gap: 34px;
+    }
+
+    /* PC */
+    .news-article {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      column-gap: 12px;
+      row-gap: 6px;
+      align-items: start;
+    }
+
+    .news-date {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      line-height: 1.6;
+      margin-top: 2px;
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .news-title {
+      font-size: 1.25rem;
+      /* H3相当(20px) */
+      font-weight: 400;
+      line-height: 1.6;
+      margin: 0;
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .news-body {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin-top: 6px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 890px) {
+
+      /* お知らせ */
+      .news-article {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 6px;
+      }
+
+      .news-date,
+      .news-title,
+      .news-body {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .news-date {
+        order: 0;
+      }
+
+      .news-title {
+        order: 1;
+      }
+
+      .news-body {
+        order: 2;
+      }
+
+      /* SP Footer（共通） */
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        width: min(230px, 100%);
+      }
+
+      /* SP見出し/行間を少し詰めたい場合 */
+      .news-page-title {
+        margin-bottom: 22px;
+      }
+
+      .news-articles {
+        gap: 26px;
+      }
+
+      .news-title {
+        font-size: 1.05rem;
+      }
+
+      .news-date {
+        font-size: .95rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- ===== Header（トップと共通） ===== -->
+    <header>
+      <div class="container-wide">
+        <div class="header-inner">
+          <a href="index.html" class="logo">
+            <img src="./image/cliniclogo_1208.png" alt="佐藤医院">
+          </a>
+
+          <nav class="global" aria-label="グローバルナビゲーション">
+            <!-- PC用 -->
+            <div class="global-links">
+              <a href="index.html">トップページ</a>
+              <a href="info.html">お知らせ</a>
+              <a href="details.html">診療内容</a>
+              <a href="about.html">当院について</a>
+              <a href="access.html">診療時間・所在地</a>
+              <a href="faq.html">よくある質問</a>
+              <a class="reserve" href="#">Web予約</a>
+            </div>
+
+            <!-- SP用 -->
+            <div class="global-actions">
+              <a class="reserve reserve-sp" href="#">Web予約</a>
+
+              <button class="hamburger" type="button" aria-label="メニューを開閉" aria-controls="globalMenu"
+                aria-expanded="false">
+                <span class="hamburger_bar" aria-hidden="true"></span>
+                <span class="hamburger_bar" aria-hidden="true"></span>
+                <span class="hamburger_bar" aria-hidden="true"></span>
+              </button>
+            </div>
+          </nav>
+        </div>
+
+        <!-- SP用ドロワー -->
+        <div id="globalMenu" class="global-drawer" hidden>
+          <a href="index.html">トップページ</a>
+          <a href="info.html">お知らせ</a>
+          <a href="details.html">診療内容</a>
+          <a href="about.html">当院について</a>
+          <a href="access.html">診療時間・所在地</a>
+          <a href="faq.html">よくある質問</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== Main（お知らせページ本体） ===== -->
+    <main>
+      <section class="section" aria-label="お知らせ">
+        <div class="container">
+          <h1 class="news-page-title">お知らせ</h1>
+          <div class="u-spacer-20" aria-hidden="true"></div>
+
+          <div class="news-articles">
+            <article class="news-article">
+              <div class="news-date">YYYY.MM.DD</div>
+              <h2 class="news-title">インフルエンザ予防接種について</h2>
+              <p class="news-body">
+                今年もインフルエンザの予防接種を開始いたしました。予約制となっておりますので、お電話または受付にてご予約をお願いいたします。例年、予約が集中しやすいため、早めのご予約をおすすめいたします。
+              </p>
+            </article>
+
+            <article class="news-article">
+              <div class="news-date">YYYY.MM.DD</div>
+              <h2 class="news-title">年末年始の休診について</h2>
+              <p class="news-body">
+                年末年始の休診日は、12月29日（金）～1月4日（木）となります。年始は1月5日（金）より通常診療を再開いたします。皆様にはご不便をおかけしますが、何卒ご了承くださいますようお願いいたします。
+              </p>
+            </article>
+
+            <article class="news-article">
+              <div class="news-date">YYYY.MM.DD</div>
+              <h2 class="news-title">健康診断のご案内</h2>
+              <p class="news-body">
+                今年も健康診断を実施しております。定期的な健康チェックは、病気の早期発見・予防にとても重要です。各種健康診断メニューをご用意しておりますので、ご希望の方はお電話にてお申し込みください。
+              </p>
+            </article>
+
+            <article class="news-article">
+              <div class="news-date">YYYY.MM.DD</div>
+              <h2 class="news-title">新型コロナウイルス対策について</h2>
+              <p class="news-body">
+                当院では引き続き、新型コロナウイルス感染症対策を徹底しております。ご来院の際には、マスクの着用、手指消毒にご協力をお願いいたします。また、発熱や風邪症状のある方は、事前にお電話でご相談いただけるとスムーズにご案内が可能です。
+              </p>
+            </article>
+
+            <article class="news-article">
+              <div class="news-date">YYYY.MM.DD</div>
+              <h2 class="news-title">オンライン診療の導入について</h2>
+              <p class="news-body">
+                2024年より、オンライン診療を一部導入いたしました。通院が難しい方や、遠方にお住まいの方にご利用いただけます。ご希望の方は、当院スタッフまでお問い合わせください。皆様の健康をサポートできるよう、スタッフ一同努めてまいります。何かご不明な点がございましたら、お気軽にお問い合わせください。
+              </p>
+            </article>
+          </div>
+          <div class="u-spacer-40" aria-hidden="true"></div>
+
+          <div class="btn-wrap">
+            <a class="btn" href="#">診察予約</a>
+          </div>
+          <div class="u-spacer-40" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- ===== Footer（トップと共通） ===== -->
+      <footer aria-label="フッター">
+        <div class="container footer-inner">
+          <nav class="footer-nav" aria-label="フッターナビゲーション">
+            <a href="index.html">トップページ</a>
+            <a href="info.html">お知らせ</a>
+            <a href="details.html">診療内容</a>
+            <a href="about.html">当院について</a>
+            <a href="access.html">診療時間・所在地</a>
+            <a href="faq.html">よくある質問</a>
+          </nav>
+
+          <div class="footer-brand">
+            <a href="#" class="logo">
+              <img src="./image/cliniclogo_1208.png" alt="佐藤医院">
+            </a>
+            <div class="footer-copy">
+              <strong>地域に根ざした医療を、あなたに。</strong>
+              <p>安心して任せられる“かかりつけ医”を目指して。</p>
+            </div>
+          </div>
+
+          <div class="copyright">©2025 佐藤医院 All rights reserved.</div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      // Hamburger（トップと同等）
+      const btn = document.querySelector('.hamburger');
+      const menu = document.getElementById('globalMenu');
+
+      const closeMenu = () => {
+        if (!btn || !menu) return;
+        menu.hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+      };
+      const openMenu = () => {
+        if (!btn || !menu) return;
+        menu.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+      };
+
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          expanded ? closeMenu() : openMenu();
+        });
+
+        document.addEventListener('click', (e) => {
+          if (menu.hidden) return;
+          if (btn.contains(e.target) || menu.contains(e.target)) return;
+          closeMenu();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeMenu();
+        });
+
+        const mq = window.matchMedia('(max-width: 890px)');
+        mq.addEventListener?.('change', (ev) => { if (!ev.matches) closeMenu(); });
+      }
+    })();
+  </script>
+</body>
+
+</html>
