@@ -110,7 +110,6 @@
         order: 2;
       }
 
-      /* SP Footer（共通） */
     }
 
     @media (max-width: 600px) {
@@ -271,44 +270,16 @@
     </main>
   </div>
 
-  <script>
-    (function () {
-      // Hamburger（トップと同等）
-      const btn = document.querySelector('.hamburger');
-      const menu = document.getElementById('globalMenu');
 
-      const closeMenu = () => {
-        if (!btn || !menu) return;
-        menu.hidden = true;
-        btn.setAttribute('aria-expanded', 'false');
-      };
-      const openMenu = () => {
-        if (!btn || !menu) return;
-        menu.hidden = false;
-        btn.setAttribute('aria-expanded', 'true');
-      };
-
-      if (btn && menu) {
-        btn.addEventListener('click', () => {
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          expanded ? closeMenu() : openMenu();
-        });
-
-        document.addEventListener('click', (e) => {
-          if (menu.hidden) return;
-          if (btn.contains(e.target) || menu.contains(e.target)) return;
-          closeMenu();
-        });
-
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') closeMenu();
-        });
-
-        const mq = window.matchMedia('(max-width: 890px)');
-        mq.addEventListener?.('change', (ev) => { if (!ev.matches) closeMenu(); });
-      }
-    })();
-  </script>
+  <aside id="floatingBanner" class="floating-banner" aria-label="予約バナー">
+    <a class="floating-banner_link" href="reservation.html">
+      <img src="./image/Attention.png" alt="Web予約はこちら">
+    </a>
+    <button id="floatingBannerClose" class="floating-banner_close" type="button" aria-label="バナーを閉じる">
+      ×
+    </button>
+  </aside>
+  <script src="./common.js"></script>
 </body>
 
 </html>

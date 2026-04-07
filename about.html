@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ja">
 
 <head>
@@ -282,11 +282,9 @@
             filter: brightness(0.70);
         }
 
-        /* ===== Footer（トップと同一構造） ===== */
         /* ===== Responsive ===== */
         @media (max-width: 890px) {
 
-            /* SP Header：追従 */
             /* About */
             .about-hero {
                 padding: 22px 0 14px;
@@ -355,7 +353,6 @@
                 margin: 0 auto 10px;
             }
 
-            /* SP Footer：メニュー非表示・センター */
         }
 
         @media (max-width: 600px) {
@@ -644,44 +641,19 @@
         </main>
     </div>
 
+
+    <aside id="floatingBanner" class="floating-banner" aria-label="予約バナー">
+        <a class="floating-banner_link" href="reservation.html">
+            <img src="./image/Attention.png" alt="Web予約はこちら">
+        </a>
+        <button id="floatingBannerClose" class="floating-banner_close" type="button" aria-label="バナーを閉じる">
+            ×
+        </button>
+    </aside>
+    <script src="./common.js"></script>
     <script>
         (function () {
-            // Hamburger
-            const btn = document.querySelector('.hamburger');
-            const menu = document.getElementById('globalMenu');
-
-            const closeMenu = () => {
-                if (!btn || !menu) return;
-                menu.hidden = true;
-                btn.setAttribute('aria-expanded', 'false');
-            };
-            const openMenu = () => {
-                if (!btn || !menu) return;
-                menu.hidden = false;
-                btn.setAttribute('aria-expanded', 'true');
-            };
-
-            if (btn && menu) {
-                btn.addEventListener('click', () => {
-                    const expanded = btn.getAttribute('aria-expanded') === 'true';
-                    expanded ? closeMenu() : openMenu();
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (menu.hidden) return;
-                    if (btn.contains(e.target) || menu.contains(e.target)) return;
-                    closeMenu();
-                });
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') closeMenu();
-                });
-
-                const mq = window.matchMedia('(max-width: 890px)');
-                mq.addEventListener?.('change', (ev) => { if (!ev.matches) closeMenu(); });
-            }
-
-            // Accordion：医院の理念方針（初期は閉）
+            // Accordion: 医院の理念方針（初期は閉）
             const trigger = document.querySelector('.accordion-trigger');
             const panel = document.getElementById('policyPanel');
             if (trigger && panel) {

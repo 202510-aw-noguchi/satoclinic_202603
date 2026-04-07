@@ -25,8 +25,6 @@
             --p-size-sp: .8rem;
         }
 
-        /* contentW基準の中央カラム */
-        /* ヘッダー（グロナビ）はcontentW除外＝ワイド */
         /* Typography (rem) */
         h3 {
             font-size: 1.25rem;
@@ -424,6 +422,7 @@
             height: 100%;
         }
 
+
         .meta {
             margin-top: 10px;
             display: grid;
@@ -435,12 +434,9 @@
             width: 64px;
         }
 
-        /* ===== Footer ===== */
         /* ===== Responsive ===== */
         @media (max-width: 890px) {
 
-            /* ===== SP Header ===== */
-            /* Drawer */
             /* 院長挨拶：写真→テキスト */
             .greet {
                 grid-template-columns: 1fr;
@@ -529,7 +525,6 @@
                 aspect-ratio: 412 / 412;
             }
 
-            /* SP Footer */
         }
 
         @media (max-width: 890px) and (min-width: 601px) {
@@ -649,6 +644,7 @@
                 font-size: 16px;
                 margin-top: 6px;
             }
+
         }
     </style>
 </head>
@@ -1036,76 +1032,44 @@
                 </div>
             </footer>
         </main>
+
+        <aside id="floatingBanner" class="floating-banner" aria-label="予約バナー">
+            <a class="floating-banner_link" href="reservation.html">
+                <img src="./image/Attention.png" alt="Web予約はこちら">
+            </a>
+            <button id="floatingBannerClose" class="floating-banner_close" type="button" aria-label="バナーを閉じる">
+                ×
+            </button>
+        </aside>
     </div>
 
+    <script src="./common.js"></script>
     <script>
         (function () {
-            // Hamburger
-            const btn = document.querySelector('.hamburger');
-            const menu = document.getElementById('globalMenu');
-
-            const closeMenu = () => {
-                if (!btn || !menu) return;
-                menu.hidden = true;
-                btn.setAttribute('aria-expanded', 'false');
-            };
-            const openMenu = () => {
-                if (!btn || !menu) return;
-                menu.hidden = false;
-                btn.setAttribute('aria-expanded', 'true');
-            };
-
-            if (btn && menu) {
-                btn.addEventListener('click', () => {
-                    const expanded = btn.getAttribute('aria-expanded') === 'true';
-                    expanded ? closeMenu() : openMenu();
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (menu.hidden) return;
-                    if (btn.contains(e.target) || menu.contains(e.target)) return;
-                    closeMenu();
-                });
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') closeMenu();
-                });
-
-                const mq = window.matchMedia('(max-width: 890px)');
-                mq.addEventListener?.('change', (ev) => { if (!ev.matches) closeMenu(); });
-            }
-
             // Hero carousel
             const slides = Array.from(document.querySelectorAll('.hero-slide'));
             if (slides.length <= 1) return;
-
             let index = 0;
             const intervalMs = 3000;
             let timer = null;
-
             const show = (i) => {
                 slides.forEach((el, n) => el.classList.toggle('is-active', n === i));
             };
-
             const next = () => {
                 index = (index + 1) % slides.length;
                 show(index);
             };
-
             const start = () => {
                 if (timer) return;
                 timer = setInterval(next, intervalMs);
             };
-
             const stop = () => {
                 if (!timer) return;
                 clearInterval(timer);
                 timer = null;
             };
-
             show(index);
             start();
-
             const area = document.querySelector('.hero-carousel') || document.querySelector('.hero');
             if (area) {
                 area.addEventListener('mouseenter', stop);

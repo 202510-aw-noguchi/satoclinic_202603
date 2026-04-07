@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./style.css">
 
     <style>
-        /* ===== details page ===== */
+        /* ===== faq page ===== */
         .faq {
             margin-top: 15px;
             margin-bottom: 15px;
@@ -58,11 +58,10 @@
             filter: brightness(0.70);
         }
 
-        /* ===== Footer（トップと共通） ===== */
-        /* ===== Responsive（トップと共通の方針） ===== */
-        @media (max-width: 890px) {
-            /* SP Header：追従 */
-            /* SP Footer：メニュー非表示・中央寄せ */
+        .hr {
+            height: 1px;
+            background: var(--line);
+            margin: 30px 0;
         }
 
         @media (max-width: 600px) {
@@ -149,6 +148,8 @@
                         <p class="question">Q. 診察時間はどれくらいかかりますか？</p>
                         <p class="answer">A. 症状や混雑状況によりますが、目安として30分～1時間程度です。事前に混雑状況をお問い合わせいただくことをお勧めします。</p>
                     </div>
+                    <div class="hr" role="separator" aria-hidden="true"></div>
+
                     <h2>予防接種・健康診断について</h2>
                     <div class="faq">
                         <p class="question">Q. インフルエンザの予防接種はいつから受けられますか？</p>
@@ -163,6 +164,8 @@
                         <p class="question">Q. 子どもの予防接種も対応していますか？</p>
                         <p class="answer">A. 当院では、小児用の予防接種（例：MRワクチン、ヒブワクチンなど）も実施しております。スケジュールについてはお問い合わせください。</p>
                     </div>
+                    <div class="hr" role="separator" aria-hidden="true"></div>
+
                     <h2>お支払いについて</h2>
                     <div class="faq">
                         <p class="question">Q. 支払いにクレジットカードは使えますか？</p>
@@ -172,6 +175,8 @@
                         <p class="question">Q. 医療費控除に必要な領収書を再発行してもらえますか？</p>
                         <p class="answer">A. はい、再発行可能です。ただし、再発行には日数をいただく場合がありますのでご了承ください。</p>
                     </div>
+                    <div class="hr" role="separator" aria-hidden="true"></div>
+
                     <h2>その他</h2>
                     <div class="faq">
                         <p class="question">Q. 駐車場はありますか？</p>
@@ -185,6 +190,7 @@
                         <p class="question">Q. 病院内での待ち時間にWi-Fiは使えますか？</p>
                         <p class="answer">A. はい、当院では無料Wi-Fiを提供しております。パスワードは受付でお知らせいたします。</p>
                     </div>
+                    <div class="hr" role="separator" aria-hidden="true"></div>
                     <p>その他のご質問や詳細については、スタッフまでお気軽にお問い合わせください。</p>
                 </div>
             </section>
@@ -217,45 +223,16 @@
         </main>
     </div>
 
-    <script>
-        (function () {
-            // Hamburger（トップと同等）
-            const btn = document.querySelector('.hamburger');
-            const menu = document.getElementById('globalMenu');
 
-            const closeMenu = () => {
-                if (!btn || !menu) return;
-                menu.hidden = true;
-                btn.setAttribute('aria-expanded', 'false');
-            };
-            const openMenu = () => {
-                if (!btn || !menu) return;
-                menu.hidden = false;
-                btn.setAttribute('aria-expanded', 'true');
-            };
-
-            if (btn && menu) {
-                btn.addEventListener('click', () => {
-                    const expanded = btn.getAttribute('aria-expanded') === 'true';
-                    expanded ? closeMenu() : openMenu();
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (menu.hidden) return;
-                    if (btn.contains(e.target) || menu.contains(e.target)) return;
-                    closeMenu();
-                });
-
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') closeMenu();
-                });
-
-                // トップに合わせる（必要なら 890 に統一してOK）
-                const mq = window.matchMedia('(max-width: 980px)');
-                mq.addEventListener?.('change', (ev) => { if (!ev.matches) closeMenu(); });
-            }
-        })();
-    </script>
+    <aside id="floatingBanner" class="floating-banner" aria-label="予約バナー">
+        <a class="floating-banner_link" href="reservation.html">
+            <img src="./image/Attention.png" alt="Web予約はこちら">
+        </a>
+        <button id="floatingBannerClose" class="floating-banner_close" type="button" aria-label="バナーを閉じる">
+            ×
+        </button>
+    </aside>
+    <script src="./common.js"></script>
 </body>
 
 </html>
