@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Web予約 | 佐藤クリニック</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        .reservation-main {
+            padding: 40px 0 56px;
+        }
+
+        .reservation-note {
+            margin-top: 12px;
+            color: #555;
+        }
+
+        .reservation-link-wrap {
+            margin-top: 28px;
+        }
+
+        .reservation-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 230px;
+            height: 56px;
+            padding: 8px 24px;
+            border-radius: 5px;
+            background: var(--btn);
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: .08em;
+        }
+
+        .reservation-link:hover,
+        .reservation-link:active {
+            filter: brightness(0.70);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <div class="container-wide">
+                <div class="header-inner">
+                    <a href="index.html" class="logo">
+                        <img src="./image/cliniclogo_1208.png" alt="佐藤医院">
+                    </a>
+
+                    <nav class="global" aria-label="グローバルナビゲーション">
+                        <!-- PC -->
+                        <div class="global-links">
+                            <a href="index.html">トップページ</a>
+                            <a href="info.html">お知らせ</a>
+                            <a href="details.html">診療内容</a>
+                            <a href="about.html">当院について</a>
+                            <a href="access.html">診療時間・所在地</a>
+                            <a href="faq.html">よくある質問</a>
+                            <a class="reserve" href="#">Web予約</a>
+                        </div>
+
+                        <!-- SP -->
+                        <div class="global-actions">
+                            <a class="reserve reserve--sp" href="#">Web予約</a>
+                            <button class="hamburger" type="button" aria-label="メニューを開閉" aria-controls="globalMenu"
+                                aria-expanded="false">
+                                <span class="hamburger_bar" aria-hidden="true"></span>
+                                <span class="hamburger_bar" aria-hidden="true"></span>
+                                <span class="hamburger_bar" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- SP drawer -->
+                <div id="globalMenu" class="global-drawer" hidden>
+                    <a href="index.html">トップページ</a>
+                    <a href="info.html">お知らせ</a>
+                    <a href="details.html">診療内容</a>
+                    <a href="about.html">当院について</a>
+                    <a href="access.html">診療時間・所在地</a>
+                    <a href="faq.html">よくある質問</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="reservation-main">
+            <section class="section" aria-label="Web予約">
+                <div class="container">
+                    <h1 class="title">Web予約</h1>
+                    <p class="lead">24時間いつでも予約申込が可能です。下のボタンから予約ページへ進んでください。<br>
+                        緊急時や当日受診をご希望の場合は、お電話でご連絡ください。</p>
+                    <div class="reservation-link-wrap">
+                        <a class="reservation-link" href="#">予約ページへ進む（外部サイトにリンクします）</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer aria-label="フッター">
+            <div class="container footer-inner">
+                <nav class="footer-nav" aria-label="フッターナビゲーション">
+                    <a href="index.html">トップページ</a>
+                    <a href="info.html">お知らせ</a>
+                    <a href="details.html">診療内容</a>
+                    <a href="about.html">当院について</a>
+                    <a href="access.html">診療時間・所在地</a>
+                    <a href="faq.html">よくある質問</a>
+                </nav>
+
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="./image/cliniclogo_1208.png" alt="佐藤医院">
+                    </a>
+                    <div class="footer-copy">
+                        <strong>地域に根ざした医療を、あなたに。</strong>
+                        <p>安心して任せられる“かかりつけ医”を目指して。</p>
+                    </div>
+                </div>
+
+                <div class="copyright">©2025 佐藤医院 All rights reserved.</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            const btn = document.querySelector('.hamburger');
+            const menu = document.getElementById('globalMenu');
+
+            const closeMenu = () => {
+                if (!btn || !menu) return;
+                menu.hidden = true;
+                btn.setAttribute('aria-expanded', 'false');
+            };
+            const openMenu = () => {
+                if (!btn || !menu) return;
+                menu.hidden = false;
+                btn.setAttribute('aria-expanded', 'true');
+            };
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    const expanded = btn.getAttribute('aria-expanded') === 'true';
+                    expanded ? closeMenu() : openMenu();
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (menu.hidden) return;
+                    if (btn.contains(e.target) || menu.contains(e.target)) return;
+                    closeMenu();
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') closeMenu();
+                });
+
+                const mq = window.matchMedia('(max-width: 890px)');
+                mq.addEventListener?.('change', (ev) => { if (!ev.matches) closeMenu(); });
+            }
+        })();
+    </script>
+</body>
+
+</html>
